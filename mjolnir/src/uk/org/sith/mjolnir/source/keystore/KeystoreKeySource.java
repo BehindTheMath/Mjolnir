@@ -1,0 +1,56 @@
+package uk.org.sith.mjolnir.source.keystore;
+
+import java.security.Key;
+import java.security.KeyStore;
+
+import uk.org.sith.mjolnir.source.Source;
+
+/**
+ * Source for keystore attacks
+ * 
+ * @author Antony Lees
+ */
+public class KeystoreKeySource implements Source {
+
+	private KeyLoader keyLoader;
+	private KeyStore keyStore;
+	
+	private String keystorePassword;
+	private String keystoreName;
+	private String keyName;
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.sith.mjolnir.source.Source#setup()
+	 */
+	@Override
+	public void setup() {
+		KeystoreLoader keystoreLoader = new KeystoreLoader();
+		keyStore = keystoreLoader.loadKeystore(keystoreName, keystorePassword);
+		keyLoader = new KeyLoader();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.sith.mjolnir.source.Source#attempt(java.lang.String)
+	 */
+	@Override
+	public boolean attempt(String attempt) {
+		Key key = keyLoader.loadKey(keyStore, keyName, attempt);
+		// return true if the key is not null (ie null key == not found)
+		return key != null;
+	}
+
+	public void setKeystorePassword(String keystorePassword) {
+		this.keystorePassword = keystorePassword;
+	}
+
+	public void setKeystoreName(String keystoreName) {
+		this.keystoreName = keystoreName;
+	}
+
+	public void setKeyName(String keyName) {
+		this.keyName = keyName;
+	}
+	
+}
