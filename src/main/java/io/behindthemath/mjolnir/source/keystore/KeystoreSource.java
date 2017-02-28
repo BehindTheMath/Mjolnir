@@ -10,25 +10,25 @@ import io.behindthemath.mjolnir.source.Source;
  * @author Antony Lees
  */
 public class KeystoreSource implements Source {
-	
-	private KeystoreLoader keystoreLoader;
-	
-	private String keystoreName;
 
-	@Override
-	public void setup() {
-		keystoreLoader = new KeystoreLoader();
-	}
+    private KeystoreLoader keystoreLoader;
 
-	@Override
-	public boolean attempt(String attempt) {
-		KeyStore keystore = keystoreLoader.loadKeystore(keystoreName, attempt);
-		// return true if the key is not null (ie null key == not found)
-		return keystore != null;
-	}
-	
-	public void setKeystoreName(String keystoreName) {
-		this.keystoreName = keystoreName;
-	}
+    private String keystoreName;
+
+    @Override
+    public void setup() {
+        keystoreLoader = new KeystoreLoader();
+    }
+
+    @Override
+    public boolean attempt(String attempt) {
+        KeyStore keystore = keystoreLoader.loadKeystore(keystoreName, attempt);
+        // return true if the key is not null (ie null key == not found)
+        return keystore != null;
+    }
+
+    public void setKeystoreName(String keystoreName) {
+        this.keystoreName = keystoreName;
+    }
 
 }

@@ -7,13 +7,13 @@ package io.behindthemath.mjolnir.attack;
  */
 public interface Attack {
 
-	/**
-	 * Get the next password attempt. This is intended to be atomic, so if this
-	 * involves processing to generate the next attempt, this should also be
-	 * done here
-	 * 
-	 * @return the next password attempt
-	 */
-	public String getNextAttempt();
+    /**
+     * Get the next password attempt. This is intended to be atomic, so if this
+     * involves processing to generate the next attempt, this should also be
+     * done here
+     *
+     * @return the next password attempt
+     */
+    public String getNextAttempt();
 
 }

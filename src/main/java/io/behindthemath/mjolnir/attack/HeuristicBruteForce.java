@@ -9,17 +9,17 @@ package io.behindthemath.mjolnir.attack;
  */
 public class HeuristicBruteForce extends BruteForce {
 
-	private String word;
+    private String word;
 
-	public HeuristicBruteForce(String word, char[] characterSet, int guessLength) {
-		super(characterSet, guessLength);
-		this.word = word;
-	}
+    public HeuristicBruteForce(String word, char[] characterSet, int guessLength) {
+        super(characterSet, guessLength);
+        this.word = word;
+    }
 
-	@Override
-	public String getNextAttempt() {
-		String chars = super.getNextAttempt();
-		return word + chars;
-	}
+    @Override
+    public String getNextAttempt() {
+        String chars = super.getNextAttempt();
+        return word + chars;
+    }
 
 }

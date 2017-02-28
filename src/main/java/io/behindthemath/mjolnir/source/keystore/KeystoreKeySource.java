@@ -12,37 +12,37 @@ import io.behindthemath.mjolnir.source.Source;
  */
 public class KeystoreKeySource implements Source {
 
-	private KeyLoader keyLoader;
-	private KeyStore keyStore;
-	
-	private String keystorePassword;
-	private String keystoreName;
-	private String keyName;
+    private KeyLoader keyLoader;
+    private KeyStore keyStore;
 
-	@Override
-	public void setup() {
-		KeystoreLoader keystoreLoader = new KeystoreLoader();
-		keyStore = keystoreLoader.loadKeystore(keystoreName, keystorePassword);
-		keyLoader = new KeyLoader();
-	}
+    private String keystorePassword;
+    private String keystoreName;
+    private String keyName;
 
-	@Override
-	public boolean attempt(String attempt) {
-		Key key = keyLoader.loadKey(keyStore, keyName, attempt);
-		// return true if the key is not null (ie null key == not found)
-		return key != null;
-	}
+    @Override
+    public void setup() {
+        KeystoreLoader keystoreLoader = new KeystoreLoader();
+        keyStore = keystoreLoader.loadKeystore(keystoreName, keystorePassword);
+        keyLoader = new KeyLoader();
+    }
 
-	public void setKeystorePassword(String keystorePassword) {
-		this.keystorePassword = keystorePassword;
-	}
+    @Override
+    public boolean attempt(String attempt) {
+        Key key = keyLoader.loadKey(keyStore, keyName, attempt);
+        // return true if the key is not null (ie null key == not found)
+        return key != null;
+    }
 
-	public void setKeystoreName(String keystoreName) {
-		this.keystoreName = keystoreName;
-	}
+    public void setKeystorePassword(String keystorePassword) {
+        this.keystorePassword = keystorePassword;
+    }
 
-	public void setKeyName(String keyName) {
-		this.keyName = keyName;
-	}
-	
+    public void setKeystoreName(String keystoreName) {
+        this.keystoreName = keystoreName;
+    }
+
+    public void setKeyName(String keyName) {
+        this.keyName = keyName;
+    }
+
 }
