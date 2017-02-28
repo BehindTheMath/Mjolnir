@@ -1,4 +1,4 @@
-package uk.org.sith.mjolnir.source.keystore;
+package io.behindthemath.mjolnir.source.keystore;
 
 import java.io.File;
 import java.io.FileInputStream;

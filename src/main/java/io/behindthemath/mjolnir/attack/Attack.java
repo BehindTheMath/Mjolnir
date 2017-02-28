@@ -1,4 +1,4 @@
-package uk.org.sith.mjolnir.attack;
+package io.behindthemath.mjolnir.attack;
 
 /**
  * Defines an attack type eg brute force attack

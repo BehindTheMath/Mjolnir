@@ -1,10 +1,10 @@
-package uk.org.sith.mjolnir;
+package io.behindthemath.mjolnir;
 
-import uk.org.sith.mjolnir.attack.Attack;
-import uk.org.sith.mjolnir.attack.BruteForce;
-import uk.org.sith.mjolnir.run.AttackRunner;
-import uk.org.sith.mjolnir.source.Source;
-import uk.org.sith.mjolnir.source.keystore.KeystoreSource;
+import io.behindthemath.mjolnir.attack.Attack;
+import io.behindthemath.mjolnir.attack.BruteForce;
+import io.behindthemath.mjolnir.run.AttackRunner;
+import io.behindthemath.mjolnir.source.Source;
+import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
 
 /**
  * Runs the attack program

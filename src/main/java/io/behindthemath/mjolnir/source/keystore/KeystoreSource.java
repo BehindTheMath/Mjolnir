@@ -1,8 +1,8 @@
-package uk.org.sith.mjolnir.source.keystore;
+package io.behindthemath.mjolnir.source.keystore;
 
 import java.security.KeyStore;
 
-import uk.org.sith.mjolnir.source.Source;
+import io.behindthemath.mjolnir.source.Source;
 
 /**
  * Source of key attacks.  Keystore must be loadable

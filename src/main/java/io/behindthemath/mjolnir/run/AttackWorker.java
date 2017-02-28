@@ -1,7 +1,7 @@
-package uk.org.sith.mjolnir.run;
+package io.behindthemath.mjolnir.run;
 
-import uk.org.sith.mjolnir.attack.Attack;
-import uk.org.sith.mjolnir.source.Source;
+import io.behindthemath.mjolnir.attack.Attack;
+import io.behindthemath.mjolnir.source.Source;
 
 /**
  * Threaded classes that actually runs the attack attempts. Threads communicate with each other using a {@link BooleanLock}

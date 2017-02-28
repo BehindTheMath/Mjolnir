@@ -1,4 +1,4 @@
-package uk.org.sith.mjolnir.attack;
+package io.behindthemath.mjolnir.attack;
 
 import java.util.Arrays;
 

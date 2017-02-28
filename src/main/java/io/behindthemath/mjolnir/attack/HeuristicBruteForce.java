@@ -1,4 +1,4 @@
-package uk.org.sith.mjolnir.attack;
+package io.behindthemath.mjolnir.attack;
 
 /**
  * Heuristic version of the brute force attack, designed to use known strings

@@ -1,4 +1,4 @@
-package uk.org.sith.mjolnir.run;
+package io.behindthemath.mjolnir.run;
 
 /**
  * Allows control between threads<br/>

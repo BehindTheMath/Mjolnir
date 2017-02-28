@@ -1,4 +1,4 @@
-package uk.org.sith.mjolnir.source;
+package io.behindthemath.mjolnir.source;
 
 /**
  * Defines the source to be cracked eg a keystore
