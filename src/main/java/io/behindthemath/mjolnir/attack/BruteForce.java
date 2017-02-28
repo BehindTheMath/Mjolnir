@@ -37,10 +37,6 @@ public class BruteForce implements Attack {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sith.mjolnir.attack.Attack#getNextAttempt()
-	 */
 	@Override
 	public synchronized String getNextAttempt() {
 		increment();

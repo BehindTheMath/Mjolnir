@@ -15,19 +15,11 @@ public class KeystoreSource implements Source {
 	
 	private String keystoreName;
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sith.mjolnir.source.Source#setup()
-	 */
 	@Override
 	public void setup() {
 		keystoreLoader = new KeystoreLoader();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sith.mjolnir.source.Source#attempt(java.lang.String)
-	 */
 	@Override
 	public boolean attempt(String attempt) {
 		KeyStore keystore = keystoreLoader.loadKeystore(keystoreName, attempt);

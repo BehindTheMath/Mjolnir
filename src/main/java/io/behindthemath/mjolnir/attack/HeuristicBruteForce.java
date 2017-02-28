@@ -16,11 +16,6 @@ public class HeuristicBruteForce extends BruteForce {
 		this.word = word;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sith.mjolnir.attack.Attack#getNextAttempt()
-	 */
 	@Override
 	public String getNextAttempt() {
 		String chars = super.getNextAttempt();
