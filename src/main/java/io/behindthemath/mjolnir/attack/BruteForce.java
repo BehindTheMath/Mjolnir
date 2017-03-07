@@ -9,8 +9,8 @@ import java.util.Arrays;
  */
 public class BruteForce implements Attack {
 
-    private char[] cs; // Character Set
-    private char[] cg; // Current Guess
+    private char[] characterSet; // Character Set
+    private char[] currentGuess; // Current Guess
 
     public BruteForce(final char[] characterSet, final int guessLength) {
         this(characterSet, guessLength, null);
@@ -18,30 +18,30 @@ public class BruteForce implements Attack {
 
 
     public BruteForce(char[] characterSet, int guessLength, final String lastAttempt) {
-        cs = characterSet;
+        this.characterSet = characterSet;
 
         if (lastAttempt == null) {
-            cg = new char[guessLength];
-            Arrays.fill(cg, cs[0]);
+            currentGuess = new char[guessLength];
+            Arrays.fill(currentGuess, this.characterSet[0]);
         } else {
-            cg = lastAttempt.toCharArray();
+            currentGuess = lastAttempt.toCharArray();
         }
     }
 
     protected void increment() {
-        int index = cg.length - 1;
+        int index = currentGuess.length - 1;
         while (index >= 0) {
-            if (cg[index] == cs[cs.length - 1]) {
+            if (currentGuess[index] == characterSet[characterSet.length - 1]) {
                 if (index == 0) {
-                    cg = new char[cg.length + 1];
-                    Arrays.fill(cg, cs[0]);
+                    currentGuess = new char[currentGuess.length + 1];
+                    Arrays.fill(currentGuess, characterSet[0]);
                     break;
                 } else {
-                    cg[index] = cs[0];
+                    currentGuess[index] = characterSet[0];
                     index--;
                 }
             } else {
-                cg[index] = cs[Arrays.binarySearch(cs, cg[index]) + 1];
+                currentGuess[index] = characterSet[Arrays.binarySearch(characterSet, currentGuess[index]) + 1];
                 break;
             }
         }
@@ -50,6 +50,6 @@ public class BruteForce implements Attack {
     @Override
     public synchronized String getNextAttempt() {
         increment();
-        return String.valueOf(cg);
+        return String.valueOf(currentGuess);
     }
 }
