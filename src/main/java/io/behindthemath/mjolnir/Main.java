@@ -22,7 +22,7 @@ public class Main {
                 'x', 'y', 'z' };
 
         // setup the attack type
-        Attack attack = new BruteForce(charset, 1);
+        Attack attack = new BruteForce(charset, 1, null);
 
         // set up the source
         Source source = new KeystoreSource();

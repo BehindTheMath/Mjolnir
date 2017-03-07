@@ -12,10 +12,20 @@ public class BruteForce implements Attack {
     private char[] cs; // Character Set
     private char[] cg; // Current Guess
 
-    public BruteForce(char[] characterSet, int guessLength) {
+    public BruteForce(final char[] characterSet, final int guessLength) {
+        this(characterSet, guessLength, null);
+    }
+
+
+    public BruteForce(char[] characterSet, int guessLength, final String lastAttempt) {
         cs = characterSet;
-        cg = new char[guessLength];
-        Arrays.fill(cg, cs[0]);
+
+        if (lastAttempt == null) {
+            cg = new char[guessLength];
+            Arrays.fill(cg, cs[0]);
+        } else {
+            cg = lastAttempt.toCharArray();
+        }
     }
 
     protected void increment() {
@@ -42,5 +52,4 @@ public class BruteForce implements Attack {
         increment();
         return String.valueOf(cg);
     }
-
 }
