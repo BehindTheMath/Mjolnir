@@ -29,7 +29,7 @@ public class Main {
         source.setup();
 
         // run the attack
-        AttackRunner attackRunner = new AttackRunner(attack, source, 100);
+        AttackRunner attackRunner = new AttackRunner(attack, source, 100, 20000);
         attackRunner.start();
     }
 

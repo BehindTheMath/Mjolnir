@@ -14,11 +14,13 @@ public class AttackRunner {
     private int numberOfWorkers;
     private Attack attack;
     private Source source;
+    private int reportEvery;
 
-    public AttackRunner(Attack attack, Source source, int numberOfWorkers) {
+    public AttackRunner(Attack attack, Source source, int numberOfWorkers, int reportEvery) {
         this.attack = attack;
         this.numberOfWorkers = numberOfWorkers;
         this.source = source;
+        this.reportEvery = reportEvery;
     }
 
     /**
@@ -31,7 +33,7 @@ public class AttackRunner {
         BooleanLock lock = new BooleanLock();
 
         for (int i = 0; i < numberOfWorkers; i++) {
-            AttackWorker attackWorker = new AttackWorker(attack, source, lock);
+            AttackWorker attackWorker = new AttackWorker(attack, source, lock, reportEvery);
             Thread attackThread = new Thread(attackWorker);
             attackThread.start();
         }

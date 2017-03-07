@@ -15,11 +15,11 @@ public class AttackWorker implements Runnable {
     private BooleanLock lock;
     private int reportEvery;
 
-    public AttackWorker(Attack attack, Source source, BooleanLock lock) {
+    public AttackWorker(Attack attack, Source source, BooleanLock lock, final int reportEvery) {
         this.attack = attack;
         this.source = source;
         this.lock = lock;
-        reportEvery = 10000;
+        this.reportEvery = reportEvery;
     }
 
     /**
