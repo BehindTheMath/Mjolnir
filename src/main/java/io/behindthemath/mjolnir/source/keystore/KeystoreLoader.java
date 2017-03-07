@@ -17,16 +17,16 @@ public class KeystoreLoader {
 
     /**
      * Loads a keystore with the given name and password
-     * @param keystoreName the name of the keystore
+     * @param keystoreFilePath the name of the keystore
      * @param keystorePassword the password attempt
      * @return the keystore or null if the keystore cannot be opened
      */
-    public KeyStore loadKeystore(String keystoreName, String keystorePassword) {
+    public KeyStore loadKeystore(String keystoreFilePath, String keystorePassword) {
 
         FileInputStream is = null;
         try {
             // Load the keystore in the user's home directory
-            File file = new File(keystoreName);
+            File file = new File(keystoreFilePath);
             is = new FileInputStream(file);
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             keystore.load(is, keystorePassword.toCharArray());

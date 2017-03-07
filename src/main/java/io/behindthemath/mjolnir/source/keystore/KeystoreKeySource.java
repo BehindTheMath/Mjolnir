@@ -16,13 +16,13 @@ public class KeystoreKeySource implements Source {
     private KeyStore keyStore;
 
     private String keystorePassword;
-    private String keystoreName;
+    private String keystoreFilePath;
     private String keyName;
 
     @Override
     public void setup() {
         KeystoreLoader keystoreLoader = new KeystoreLoader();
-        keyStore = keystoreLoader.loadKeystore(keystoreName, keystorePassword);
+        keyStore = keystoreLoader.loadKeystore(keystoreFilePath, keystorePassword);
         keyLoader = new KeyLoader();
     }
 
@@ -37,8 +37,8 @@ public class KeystoreKeySource implements Source {
         this.keystorePassword = keystorePassword;
     }
 
-    public void setKeystoreName(String keystoreName) {
-        this.keystoreName = keystoreName;
+    public void setKeystoreFilePath(String keystoreFilePath) {
+        this.keystoreFilePath = keystoreFilePath;
     }
 
     public void setKeyName(String keyName) {

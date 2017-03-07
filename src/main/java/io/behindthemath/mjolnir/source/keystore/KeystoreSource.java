@@ -13,7 +13,7 @@ public class KeystoreSource implements Source {
 
     private KeystoreLoader keystoreLoader;
 
-    private String keystoreName;
+    private String keystoreFilePath;
 
     @Override
     public void setup() {
@@ -22,13 +22,13 @@ public class KeystoreSource implements Source {
 
     @Override
     public boolean attempt(String attempt) {
-        KeyStore keystore = keystoreLoader.loadKeystore(keystoreName, attempt);
+        KeyStore keystore = keystoreLoader.loadKeystore(keystoreFilePath, attempt);
         // return true if the key is not null (ie null key == not found)
         return keystore != null;
     }
 
-    public void setKeystoreName(String keystoreName) {
-        this.keystoreName = keystoreName;
+    public void setKeystoreFilePath(String keystoreFilePath) {
+        this.keystoreFilePath = keystoreFilePath;
     }
 
 }
