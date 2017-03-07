@@ -19,10 +19,18 @@ public class KeystoreKeySource implements Source {
     private String keystoreFilePath;
     private String keyName;
 
+    public KeystoreKeySource() {}
+
+    public KeystoreKeySource(String keystoreFilePath, String keystorePassword, String keyName) {
+        this.keystoreFilePath = keystoreFilePath;
+        this.keystorePassword = keystorePassword;
+        this.keyName = keyName;
+    }
+
     @Override
     public void setup() {
-        KeystoreLoader keystoreLoader = new KeystoreLoader();
-        keyStore = keystoreLoader.loadKeystore(keystoreFilePath, keystorePassword);
+        KeystoreLoader keystoreLoader = new KeystoreLoader(keystoreFilePath);
+        keyStore = keystoreLoader.loadKeystore(keystorePassword);
         keyLoader = new KeyLoader();
     }
 

@@ -14,19 +14,22 @@ import java.security.NoSuchAlgorithmException;
  * @author Antony Lees
  */
 public class KeystoreLoader {
+    private File file;
+
+    KeystoreLoader(String keystoreFilePath) {
+        file = new File(keystoreFilePath);
+    }
 
     /**
      * Loads a keystore with the given name and password
-     * @param keystoreFilePath the name of the keystore
      * @param keystorePassword the password attempt
      * @return the keystore or null if the keystore cannot be opened
      */
-    public KeyStore loadKeystore(String keystoreFilePath, String keystorePassword) {
+    public KeyStore loadKeystore(String keystorePassword) {
 
         FileInputStream is = null;
         try {
             // Load the keystore in the user's home directory
-            File file = new File(keystoreFilePath);
             is = new FileInputStream(file);
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             keystore.load(is, keystorePassword.toCharArray());

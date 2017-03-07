@@ -15,14 +15,20 @@ public class KeystoreSource implements Source {
 
     private String keystoreFilePath;
 
+    public KeystoreSource() {}
+
+    public KeystoreSource(String keystoreFilePath) {
+        this.keystoreFilePath = keystoreFilePath;
+    }
+
     @Override
     public void setup() {
-        keystoreLoader = new KeystoreLoader();
+        keystoreLoader = new KeystoreLoader(keystoreFilePath);
     }
 
     @Override
     public boolean attempt(String attempt) {
-        KeyStore keystore = keystoreLoader.loadKeystore(keystoreFilePath, attempt);
+        KeyStore keystore = keystoreLoader.loadKeystore(attempt);
         // return true if the key is not null (ie null key == not found)
         return keystore != null;
     }

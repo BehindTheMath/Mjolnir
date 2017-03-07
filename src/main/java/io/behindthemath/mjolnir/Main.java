@@ -25,7 +25,7 @@ public class Main {
         Attack attack = new BruteForce(charset, 1, null);
 
         // set up the source
-        Source source = new KeystoreSource();
+        Source source = new KeystoreSource("Test keystore.jks");
         source.setup();
 
         // run the attack
