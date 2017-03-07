@@ -11,15 +11,15 @@ import io.behindthemath.mjolnir.source.Source;
  */
 public class AttackRunner {
 
-    private int numberOfWorkers;
     private Attack attack;
     private Source source;
+    private int numberOfWorkers;
     private int reportEvery;
 
     public AttackRunner(Attack attack, Source source, int numberOfWorkers, int reportEvery) {
         this.attack = attack;
-        this.numberOfWorkers = numberOfWorkers;
         this.source = source;
+        this.numberOfWorkers = numberOfWorkers;
         this.reportEvery = reportEvery;
     }
 
