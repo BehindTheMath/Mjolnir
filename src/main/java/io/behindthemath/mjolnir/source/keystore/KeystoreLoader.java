@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
  * 
  * @author Antony Lees
  */
-public class KeystoreLoader {
+class KeystoreLoader {
     private File file;
 
     KeystoreLoader(String keystoreFilePath) {
@@ -25,7 +25,7 @@ public class KeystoreLoader {
      * @param keystorePassword the password attempt
      * @return the keystore or null if the keystore cannot be opened
      */
-    public KeyStore loadKeystore(String keystorePassword) {
+    KeyStore loadKeystore(String keystorePassword) {
 
         FileInputStream is = null;
         try {

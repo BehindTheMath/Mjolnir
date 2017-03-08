@@ -12,7 +12,7 @@ public class BruteForce implements Attack {
     private char[] characterSet; // Character Set
     private char[] currentGuess; // Current Guess
 
-    public BruteForce(final char[] characterSet, final int guessLength) {
+    BruteForce(final char[] characterSet, final int guessLength) {
         this(characterSet, guessLength, null);
     }
 
@@ -28,7 +28,7 @@ public class BruteForce implements Attack {
         }
     }
 
-    protected void increment() {
+    private void increment() {
         int index = currentGuess.length - 1;
         while (index >= 0) {
             if (currentGuess[index] == characterSet[characterSet.length - 1]) {

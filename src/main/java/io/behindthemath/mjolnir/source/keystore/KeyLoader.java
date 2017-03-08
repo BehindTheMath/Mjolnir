@@ -11,7 +11,7 @@ import java.security.UnrecoverableKeyException;
  * 
  * @author Antony Lees
  */
-public class KeyLoader {
+class KeyLoader {
 
     /**
      * Loads a key from the given keystore.  Returns null if the key cannot be opened
@@ -20,7 +20,7 @@ public class KeyLoader {
      * @param password the password attempt
      * @return the key, or null if password is incorrect or key not found
      */
-    public static Key loadKey(KeyStore keystore, String keyAlias, String password) {
+    static Key loadKey(KeyStore keystore, String keyAlias, String password) {
 
         try {
             // get my private key
