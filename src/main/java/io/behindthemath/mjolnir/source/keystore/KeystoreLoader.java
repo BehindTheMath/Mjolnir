@@ -34,14 +34,7 @@ class KeystoreLoader {
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             keystore.load(is, keystorePassword.toCharArray());
             return keystore;
-        } catch (java.security.cert.CertificateException e) {
-            throw new KeystoreException(e);
-        } catch (NoSuchAlgorithmException e) {
-            throw new KeystoreException(e);
-        } catch (FileNotFoundException e) {
-            // Keystore does not exist
-            throw new KeystoreException(e);
-        } catch (KeyStoreException e) {
+        } catch (java.security.cert.CertificateException | KeyStoreException | NoSuchAlgorithmException | FileNotFoundException e) {
             throw new KeystoreException(e);
         } catch (IOException e) {
 

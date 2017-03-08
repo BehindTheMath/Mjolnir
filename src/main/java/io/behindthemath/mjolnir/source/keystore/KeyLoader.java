@@ -26,11 +26,7 @@ class KeyLoader {
             // get my private key
             Key key = keystore.getKey(keyAlias, password.toCharArray());
             return key;
-        } catch (NoSuchAlgorithmException e) {
-            // let it return null
-        } catch (KeyStoreException e) {
-            // let it return null
-        } catch (UnrecoverableKeyException e) {
+        } catch (NoSuchAlgorithmException | KeyStoreException | UnrecoverableKeyException e) {
             // let it return null
         }
         return null;
