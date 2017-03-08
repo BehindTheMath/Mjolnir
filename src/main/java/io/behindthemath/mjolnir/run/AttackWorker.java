@@ -9,7 +9,6 @@ import io.behindthemath.mjolnir.source.Source;
  * @author Antony Lees
  */
 public class AttackWorker implements Runnable {
-
     private Attack attack;
     private Source source;
     private BooleanLock lock;
@@ -43,5 +42,4 @@ public class AttackWorker implements Runnable {
             }
         }
     }
-
 }

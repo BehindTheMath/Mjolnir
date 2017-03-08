@@ -10,7 +10,6 @@ import io.behindthemath.mjolnir.source.Source;
  * @author Antony Lees
  */
 public class AttackRunner {
-
     private Attack attack;
     private Source source;
     private int numberOfWorkers;
@@ -29,7 +28,6 @@ public class AttackRunner {
      * answer
      */
     public void start() {
-
         BooleanLock lock = new BooleanLock();
 
         for (int i = 0; i < numberOfWorkers; i++) {
@@ -37,7 +35,5 @@ public class AttackRunner {
             Thread attackThread = new Thread(attackWorker);
             attackThread.start();
         }
-
     }
-
 }

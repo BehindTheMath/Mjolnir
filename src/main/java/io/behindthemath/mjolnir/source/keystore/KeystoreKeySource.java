@@ -11,7 +11,6 @@ import io.behindthemath.mjolnir.source.Source;
  * @author Antony Lees
  */
 public class KeystoreKeySource implements Source {
-
     private KeyLoader keyLoader;
     private KeyStore keyStore;
 
@@ -52,5 +51,4 @@ public class KeystoreKeySource implements Source {
     public void setKeyName(String keyName) {
         this.keyName = keyName;
     }
-
 }

@@ -6,7 +6,6 @@ package io.behindthemath.mjolnir.source;
  * @author Antony Lees
  */
 public interface Source {
-
     /**
      * Called to setup the source before any attempts are made
      */
@@ -17,5 +16,4 @@ public interface Source {
      * @return true if the attempt succeeded
      */
     public boolean attempt(String attempt);
-
 }

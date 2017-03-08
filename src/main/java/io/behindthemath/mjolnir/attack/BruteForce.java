@@ -8,14 +8,12 @@ import java.util.Arrays;
  * @author Antony Lees
  */
 public class BruteForce implements Attack {
-
     private char[] characterSet; // Character Set
     private char[] currentGuess; // Current Guess
 
     BruteForce(final char[] characterSet, final int guessLength) {
         this(characterSet, guessLength, null);
     }
-
 
     public BruteForce(char[] characterSet, int guessLength, final String lastAttempt) {
         this.characterSet = characterSet;

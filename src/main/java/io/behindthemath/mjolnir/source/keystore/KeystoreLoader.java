@@ -26,7 +26,6 @@ class KeystoreLoader {
      * @return the keystore or null if the keystore cannot be opened
      */
     KeyStore loadKeystore(String keystorePassword) {
-
         FileInputStream is = null;
         try {
             // Load the keystore in the user's home directory
@@ -50,7 +49,5 @@ class KeystoreLoader {
                 e.printStackTrace();
             }
         }
-
     }
-
 }

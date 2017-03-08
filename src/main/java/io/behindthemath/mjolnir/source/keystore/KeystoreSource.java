@@ -10,9 +10,7 @@ import io.behindthemath.mjolnir.source.Source;
  * @author Antony Lees
  */
 public class KeystoreSource implements Source {
-
     private KeystoreLoader keystoreLoader;
-
     private String keystoreFilePath;
 
     public KeystoreSource() {}
@@ -36,5 +34,4 @@ public class KeystoreSource implements Source {
     public void setKeystoreFilePath(String keystoreFilePath) {
         this.keystoreFilePath = keystoreFilePath;
     }
-
 }

@@ -6,7 +6,6 @@ package io.behindthemath.mjolnir.attack;
  * @author Antony Lees
  */
 public interface Attack {
-
     /**
      * Get the next password attempt. This is intended to be atomic, so if this
      * involves processing to generate the next attempt, this should also be
@@ -15,5 +14,4 @@ public interface Attack {
      * @return the next password attempt
      */
     public String getNextAttempt();
-
 }

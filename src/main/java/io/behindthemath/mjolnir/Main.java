@@ -12,7 +12,6 @@ import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
  * @author Antony Lees
  */
 public class Main {
-
     public static void main(String[] args) {
 
         // possible characters used
@@ -32,5 +31,4 @@ public class Main {
         AttackRunner attackRunner = new AttackRunner(attack, source, 100, 20000);
         attackRunner.start();
     }
-
 }
