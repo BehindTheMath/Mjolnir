@@ -11,7 +11,6 @@ import io.behindthemath.mjolnir.source.Source;
  * @author Antony Lees
  */
 public class KeystoreKeySource implements Source {
-    private KeyLoader keyLoader;
     private KeyStore keyStore;
 
     private String keystorePassword;
@@ -30,12 +29,11 @@ public class KeystoreKeySource implements Source {
     public void setup() {
         KeystoreLoader keystoreLoader = new KeystoreLoader(keystoreFilePath);
         keyStore = keystoreLoader.loadKeystore(keystorePassword);
-        keyLoader = new KeyLoader();
     }
 
     @Override
     public boolean attempt(String attempt) {
-        Key key = keyLoader.loadKey(keyStore, keyName, attempt);
+        Key key = KeyLoader.loadKey(keyStore, keyName, attempt);
         // return true if the key is not null (ie null key == not found)
         return key != null;
     }
