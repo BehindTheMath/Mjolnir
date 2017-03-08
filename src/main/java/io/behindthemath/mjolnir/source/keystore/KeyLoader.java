@@ -20,7 +20,7 @@ public class KeyLoader {
      * @param password the password attempt
      * @return the key, or null if password is incorrect or key not found
      */
-    public Key loadKey(KeyStore keystore, String keyAlias, String password) {
+    public static Key loadKey(KeyStore keystore, String keyAlias, String password) {
 
         try {
             // get my private key
