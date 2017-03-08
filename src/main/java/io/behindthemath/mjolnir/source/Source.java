@@ -16,4 +16,6 @@ public interface Source {
      * @return true if the attempt succeeded
      */
     boolean attempt(String attempt);
+
+    void setKeystoreFilePath(String keystoreFilePath);
 }
