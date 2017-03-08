@@ -28,7 +28,7 @@ public class Main {
     // How long the password is
     private int guessLength = 0;
 
-    // set of characters to try
+    // Set of characters to try
     private char[] characterSet;
 
     public static void main(String[] args) {
@@ -45,13 +45,13 @@ public class Main {
         parseArgs(args);
         validateState();
 
-        // setup the attack type
+        // Set up the attack
         Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
 
-        // set up the source
+        // Set up the source
         source.setup();
 
-        // run the attack
+        // Run the attack
         AttackRunner attackRunner = new AttackRunner(attack, source, numberOfWorkers, reportEvery);
         attackRunner.start();
     }
@@ -129,7 +129,7 @@ public class Main {
     }
 
     /**
-     * Validates the state once all the command line arguments are parsed
+     * Validates the state once all the command line arguments are parsed.
      */
     private void validateState() {
         if (characterSet == null) displayErrorAndParams("The -c flag must be used to set the character set.");
@@ -137,7 +137,7 @@ public class Main {
     }
 
     /**
-     * Display the available parameters
+     * Display the available command line parameters.
      */
     private static void displayParams() {
         System.out.println("Mjolnir v0.1\t(c) 2017 Behind The Math\n");

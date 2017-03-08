@@ -1,7 +1,8 @@
 package io.behindthemath.mjolnir.run;
 
 /**
- * Allows control between threads<br/>
+ * Allows control between threads
+ * <p>
  * Taken from http://armstrong.craig.free.fr/eBooks/SAMS/SAMS%20Java%20Thread%20Programming.pdf page 316
  * 
  * @author Antony Lees
@@ -71,7 +72,8 @@ class BooleanLock {
 
         if (msTimeout == 0L) {
             while (value != state) {
-                wait(); // wait indefinitely until notified
+                // wait indefinitely until notified
+                wait();
             }
 
             // condition has finally been met
@@ -87,8 +89,7 @@ class BooleanLock {
             msRemaining = endTime - System.currentTimeMillis();
         }
 
-        // May have timed out, or may have met value,
-        // calculate return value.
+        // May have timed out, or may have met value, calculate return value.
         return (value == state);
     }
 }

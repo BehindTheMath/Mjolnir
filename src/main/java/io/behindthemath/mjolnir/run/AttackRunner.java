@@ -5,7 +5,7 @@ import io.behindthemath.mjolnir.source.Source;
 
 /**
  * Runs the attack for the given attack against the given source, for the given
- * number of threads
+ * number of threads.
  * 
  * @author Antony Lees
  */
@@ -25,7 +25,7 @@ public class AttackRunner {
     /**
      * Starts the attack. Threads communicate with each other using the
      * {@link BooleanLock} which stops all the threads if any thread finds the
-     * answer
+     * answer.
      */
     public void start() {
         BooleanLock lock = new BooleanLock();

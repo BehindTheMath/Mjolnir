@@ -4,7 +4,7 @@ import io.behindthemath.mjolnir.attack.Attack;
 import io.behindthemath.mjolnir.source.Source;
 
 /**
- * Threaded classes that actually runs the attack attempts. Threads communicate with each other using a {@link BooleanLock}
+ * Threaded classes that actually runs the attack attempts. Threads communicate with each other using a {@link BooleanLock}.
  * 
  * @author Antony Lees
  */
@@ -22,7 +22,7 @@ public class AttackWorker implements Runnable {
     }
 
     /**
-     * Runs the actual attack.  Reporting can be changed so that each attempt isn't logged
+     * Runs the actual attack.
      */
     @Override
     public void run() {

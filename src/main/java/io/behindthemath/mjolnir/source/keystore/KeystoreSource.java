@@ -5,7 +5,7 @@ import java.security.KeyStore;
 import io.behindthemath.mjolnir.source.Source;
 
 /**
- * Source of key attacks.  Keystore must be loadable
+ * Source of key attacks. Keystore must be loadable.
  * 
  * @author Antony Lees
  */

@@ -9,7 +9,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Loads keystores
+ * Loads keystores.
  * 
  * @author Antony Lees
  */
@@ -21,14 +21,14 @@ class KeystoreLoader {
     }
 
     /**
-     * Loads a keystore with the given name and password
+     * Loads the keystore with the given password.
+     *
      * @param keystorePassword the password attempt
-     * @return the keystore or null if the keystore cannot be opened
+     * @return The keystore, or null if the keystore cannot be opened.
      */
     KeyStore loadKeystore(String keystorePassword) {
         FileInputStream is = null;
         try {
-            // Load the keystore in the user's home directory
             is = new FileInputStream(file);
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             keystore.load(is, keystorePassword.toCharArray());

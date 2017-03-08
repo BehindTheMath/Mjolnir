@@ -3,13 +3,13 @@ package io.behindthemath.mjolnir.attack;
 import java.util.Arrays;
 
 /**
- * Brute force attack implementation of {@link Attack}
+ * Brute force attack implementation of {@link Attack}.
  * 
  * @author Antony Lees
  */
 public class BruteForce implements Attack {
-    private char[] characterSet; // Character Set
-    private char[] currentGuess; // Current Guess
+    private char[] characterSet;
+    private char[] currentGuess;
 
     BruteForce(final char[] characterSet, final int guessLength) {
         this(characterSet, guessLength, null);

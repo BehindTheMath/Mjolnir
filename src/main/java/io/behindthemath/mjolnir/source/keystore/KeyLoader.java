@@ -14,11 +14,12 @@ import java.security.UnrecoverableKeyException;
 class KeyLoader {
 
     /**
-     * Loads a key from the given keystore.  Returns null if the key cannot be opened
+     * Loads a key from the given keystore.
+     *
      * @param keystore the keystore containing the key
      * @param keyAlias the alias of the key
      * @param password the password attempt
-     * @return the key, or null if password is incorrect or key not found
+     * @return The key, or {@code null} if the password is incorrect or key could not be not found.
      */
     static Key loadKey(KeyStore keystore, String keyAlias, String password) {
 
