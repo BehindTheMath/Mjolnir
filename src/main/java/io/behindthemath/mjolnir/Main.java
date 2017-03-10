@@ -2,7 +2,7 @@ package io.behindthemath.mjolnir;
 
 import io.behindthemath.mjolnir.attack.Attack;
 import io.behindthemath.mjolnir.attack.BruteForce;
-import io.behindthemath.mjolnir.run.AttackRunner;
+import io.behindthemath.mjolnir.run.AttackExecutor;
 import io.behindthemath.mjolnir.source.Source;
 import io.behindthemath.mjolnir.source.keystore.KeystoreKeySource;
 import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
@@ -52,8 +52,14 @@ public class Main {
         source.setup();
 
         // Run the attack
-        AttackRunner attackRunner = new AttackRunner(attack, source, numberOfWorkers, reportEvery);
-        attackRunner.start();
+        AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
+        String result = attackExecutor.start();
+        if (result != null) {
+            System.out.println("\nPassword found: " + result);
+            System.exit(0);
+        } else {
+            System.exit(1);
+        }
     }
 
     /**
