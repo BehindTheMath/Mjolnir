@@ -11,7 +11,7 @@ public class BruteForce implements Attack {
     private char[] characterSet;
     private char[] currentGuess;
 
-    BruteForce(final char[] characterSet, final int guessLength) {
+    public BruteForce(final char[] characterSet, final int guessLength) {
         this(characterSet, guessLength, null);
     }
 
