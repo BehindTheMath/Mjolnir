@@ -39,7 +39,7 @@ public class BruteForce implements Attack {
                     index--;
                 }
             } else {
-                currentGuess[index] = characterSet[Arrays.binarySearch(characterSet, currentGuess[index]) + 1];
+                currentGuess[index] = characterSet[arraySearch(characterSet, currentGuess[index]) + 1];
                 break;
             }
         }
@@ -49,5 +49,19 @@ public class BruteForce implements Attack {
     public synchronized String getNextAttempt() {
         increment();
         return String.valueOf(currentGuess);
+    }
+
+    /**
+     * Searches the specified array of chars for the specified value.
+     *
+     * @param charArray The array to be searched
+     * @param charToFind The value to be searched for
+     * @return The index of the value searched for, if it is found in the array; otherwise -1.
+     */
+    private int arraySearch(char[] charArray, char charToFind) {
+        for (int i = 0; i < charArray.length; i++) {
+            if (charArray[i] == charToFind) return i;
+        }
+        return -1;
     }
 }
