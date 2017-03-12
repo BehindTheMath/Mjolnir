@@ -15,6 +15,6 @@ public class TimedTest {
 
     public void markEnd() {
         Date endDate = new Date();
-        System.out.println("Time to run: " + TimeUnit.SECONDS.convert(endDate.getTime() - startDate.getTime(), TimeUnit.MILLISECONDS) + " seconds.");
+        System.out.println("\n" + "Time to run: " + TimeUnit.SECONDS.convert(endDate.getTime() - startDate.getTime(), TimeUnit.MILLISECONDS) + " seconds.");
     }
 }

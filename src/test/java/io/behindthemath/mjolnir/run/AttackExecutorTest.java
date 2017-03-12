@@ -40,4 +40,26 @@ public class AttackExecutorTest extends TimedTest {
         System.out.println("\n" + "Password = " + result);
         assertEquals(TEST_KEYSTORE_PASSWORD, result);
     }
+
+    @Test
+    public void testAttackAgainstKeystoreKey() throws Exception {
+        final String TEST_KEY_PASSWORD = "test1";
+        final String TEST_KEY_NAME = "test key";
+        guessLength = TEST_KEY_PASSWORD.length();
+        final char[] characterSet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t',
+                'u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
+        final String lastAttempt = "szzzz";
+
+        Source source = new KeystoreKeySource("Test keystore.jks", TEST_KEYSTORE_PASSWORD, TEST_KEY_NAME);
+        source.setup();
+        Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
+        AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
+
+        markStart();
+        String result = attackExecutor.start();
+        markEnd();
+
+        System.out.println("\n" + "Password = " + result);
+        assertEquals(TEST_KEY_PASSWORD, result);
+    }
 }
