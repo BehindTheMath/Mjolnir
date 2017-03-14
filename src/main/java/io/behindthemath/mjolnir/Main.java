@@ -6,6 +6,10 @@ import io.behindthemath.mjolnir.run.AttackExecutor;
 import io.behindthemath.mjolnir.source.Source;
 import io.behindthemath.mjolnir.source.keystore.KeystoreKeySource;
 import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
+import io.behindthemath.mjolnir.utils.Stopwatch;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Runs the attack program
@@ -53,7 +57,9 @@ public class Main {
 
         // Run the attack
         AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
+        Stopwatch stopwatch = new Stopwatch().start();
         String result = attackExecutor.start();
+        stopwatch.stop().printTime(TimeUnit.SECONDS);
         if (result != null) {
             System.out.println("\nPassword found: " + result);
             System.exit(0);
