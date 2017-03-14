@@ -28,12 +28,12 @@ public class KeystoreKeySource implements Source {
     @Override
     public void setup() {
         KeystoreLoader keystoreLoader = new KeystoreLoader(keystoreFilePath);
-        keyStore = keystoreLoader.loadKeystore(keystorePassword);
+        keyStore = keystoreLoader.loadKeystore(keystorePassword.toCharArray());
     }
 
     @Override
-    public boolean attempt(String attempt) {
-        Key key = KeyLoader.loadKey(keyStore, keyName, attempt);
+    public boolean attempt(char[] attempt) {
+        Key key = KeyLoader.loadKey(keyStore, keyName, String.valueOf(attempt));
         // return true if the key is not null (ie null key == not found)
         return key != null;
     }

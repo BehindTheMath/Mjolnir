@@ -1,5 +1,7 @@
 package io.behindthemath.mjolnir.attack;
 
+import java.util.Arrays;
+
 /**
  * Heuristic version of the brute force attack, designed to use known strings
  * with additional random values. For example, if the user knows they probably
@@ -17,9 +19,11 @@ public class HeuristicBruteForce extends BruteForce {
     }
 
     @Override
-    public String getNextAttempt() {
-        String chars = super.getNextAttempt();
-        return word + chars;
+    public char[] getNextAttempt() {
+        char[] chars = super.getNextAttempt();
+        char[] result = Arrays.copyOf(word.toCharArray(), word.length() + chars.length);
+        System.arraycopy(chars, 0, result, word.length(), chars.length);
+        return result;
     }
 
 }

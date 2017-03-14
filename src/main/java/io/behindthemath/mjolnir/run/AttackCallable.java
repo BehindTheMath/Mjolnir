@@ -25,7 +25,7 @@ public class AttackCallable implements Callable<String> {
     @Override
     public synchronized String call() throws Exception {
         int attemptNumber = 0;
-        String attempt;
+        char[] attempt;
 
         while(!Thread.interrupted()) {
             attemptNumber++;

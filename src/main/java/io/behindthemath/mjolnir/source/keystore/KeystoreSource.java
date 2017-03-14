@@ -25,7 +25,7 @@ public class KeystoreSource implements Source {
     }
 
     @Override
-    public boolean attempt(String attempt) {
+    public boolean attempt(char[] attempt) {
         KeyStore keystore = keystoreLoader.loadKeystore(attempt);
         // return true if the key is not null (ie null key == not found)
         return keystore != null;

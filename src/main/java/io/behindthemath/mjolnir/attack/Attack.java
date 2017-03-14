@@ -13,5 +13,5 @@ public interface Attack {
      *
      * @return the next password attempt
      */
-    String getNextAttempt();
+    char[] getNextAttempt();
 }

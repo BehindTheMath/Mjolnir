@@ -26,12 +26,12 @@ class KeystoreLoader {
      * @param keystorePassword the password attempt
      * @return The keystore, or null if the keystore cannot be opened.
      */
-    KeyStore loadKeystore(String keystorePassword) {
+    KeyStore loadKeystore(char[] keystorePassword) {
         FileInputStream is = null;
         try {
             is = new FileInputStream(file);
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-            keystore.load(is, keystorePassword.toCharArray());
+            keystore.load(is, keystorePassword);
             return keystore;
         } catch (java.security.cert.CertificateException | KeyStoreException | NoSuchAlgorithmException | FileNotFoundException e) {
             throw new KeystoreException(e);

@@ -61,9 +61,9 @@ public class BruteForce implements Attack {
     }
 
     @Override
-    public synchronized String getNextAttempt() {
+    public synchronized char[] getNextAttempt() {
         increment();
-        return String.valueOf(buildCurrentGuess());
+        return buildCurrentGuess();
     }
 
     /**
