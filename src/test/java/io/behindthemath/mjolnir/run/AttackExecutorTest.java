@@ -21,6 +21,7 @@ public class AttackExecutorTest {
     private int guessLength;
     private final int numberOfWorkers = 4;
     private final int reportEvery = 20000;
+    private final String KEYSTORE_FILE_PATH = "Test keystore.jks";
 
     @Test
     public void testAttackAgainstKeystore() throws Exception {
@@ -28,7 +29,7 @@ public class AttackExecutorTest {
         final char[] characterSet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w',
                 'x','y','z'};
 
-        Source source = new KeystoreSource("Test keystore.jks");
+        Source source = new KeystoreSource(KEYSTORE_FILE_PATH);
         source.setup();
         Attack attack = new BruteForce(characterSet, guessLength);
         AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
@@ -50,7 +51,7 @@ public class AttackExecutorTest {
                 'u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
         final String lastAttempt = "szzzz";
 
-        Source source = new KeystoreKeySource("Test keystore.jks", TEST_KEYSTORE_PASSWORD, TEST_KEY_NAME);
+        Source source = new KeystoreKeySource(KEYSTORE_FILE_PATH, TEST_KEYSTORE_PASSWORD, TEST_KEY_NAME);
         source.setup();
         Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
         AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
