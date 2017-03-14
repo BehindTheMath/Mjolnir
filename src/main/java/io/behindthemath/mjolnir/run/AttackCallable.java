@@ -23,7 +23,7 @@ public class AttackCallable implements Callable<String> {
     }
 
     @Override
-    public synchronized String call() throws Exception {
+    public String call() throws Exception {
         int attemptNumber = 0;
         char[] attempt;
 

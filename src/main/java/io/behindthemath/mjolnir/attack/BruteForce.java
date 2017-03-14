@@ -61,7 +61,7 @@ public class BruteForce implements Attack {
     }
 
     @Override
-    public synchronized char[] getNextAttempt() {
+    public char[] getNextAttempt() {
         increment();
         return buildCurrentGuess();
     }
