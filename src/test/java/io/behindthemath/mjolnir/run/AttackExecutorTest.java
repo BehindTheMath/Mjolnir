@@ -35,7 +35,7 @@ public class AttackExecutorTest {
 
         Stopwatch stopwatch = new Stopwatch().start();
         String result = attackExecutor.start();
-        stopwatch.stop().printTime();
+        stopwatch.stop().printTime(TimeUnit.SECONDS);
 
         System.out.println("\n" + "Password = " + result);
         assertEquals(TEST_KEYSTORE_PASSWORD, result);
@@ -57,7 +57,7 @@ public class AttackExecutorTest {
 
         Stopwatch stopwatch = new Stopwatch().start();
         String result = attackExecutor.start();
-        stopwatch.stop().printTime();
+        stopwatch.stop().printTime(TimeUnit.SECONDS);
 
         System.out.println("\n" + "Password = " + result);
         assertEquals(TEST_KEY_PASSWORD, result);
