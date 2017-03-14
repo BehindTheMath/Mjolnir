@@ -45,7 +45,8 @@ public class Stopwatch {
 
     public Stopwatch printTime(TimeUnit timeUnit) {
         processElapsedTime();
-        System.out.println("Time elapsed: " + timeUnit.convert(elapsedSoFar, TimeUnit.MILLISECONDS) + " " + timeUnit.toString());
+        System.out.println("Time elapsed: " + timeUnit.convert(elapsedSoFar, TimeUnit.MILLISECONDS) + " "
+                + timeUnit.toString().toLowerCase());
         return this;
     }
 
