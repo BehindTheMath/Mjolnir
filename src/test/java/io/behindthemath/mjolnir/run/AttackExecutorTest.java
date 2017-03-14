@@ -1,11 +1,11 @@
 package io.behindthemath.mjolnir.run;
 
-import io.behindthemath.mjolnir.TimedTest;
 import io.behindthemath.mjolnir.attack.Attack;
 import io.behindthemath.mjolnir.attack.BruteForce;
 import io.behindthemath.mjolnir.source.Source;
 import io.behindthemath.mjolnir.source.keystore.KeystoreKeySource;
 import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
+import io.behindthemath.mjolnir.utils.Stopwatch;
 import org.junit.Test;
 
 import java.util.Date;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Behind The Math on 3/1/2017.
  */
-public class AttackExecutorTest extends TimedTest {
+public class AttackExecutorTest {
     private final String TEST_KEYSTORE_PASSWORD = "test";
     private int guessLength;
     private final int numberOfWorkers = 4;
@@ -33,9 +33,9 @@ public class AttackExecutorTest extends TimedTest {
         Attack attack = new BruteForce(characterSet, guessLength);
         AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
 
-        markStart();
+        Stopwatch stopwatch = new Stopwatch().start();
         String result = attackExecutor.start();
-        markEnd();
+        stopwatch.stop().printTime();
 
         System.out.println("\n" + "Password = " + result);
         assertEquals(TEST_KEYSTORE_PASSWORD, result);
@@ -55,9 +55,9 @@ public class AttackExecutorTest extends TimedTest {
         Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
         AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
 
-        markStart();
+        Stopwatch stopwatch = new Stopwatch().start();
         String result = attackExecutor.start();
-        markEnd();
+        stopwatch.stop().printTime();
 
         System.out.println("\n" + "Password = " + result);
         assertEquals(TEST_KEY_PASSWORD, result);
