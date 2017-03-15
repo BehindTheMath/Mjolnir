@@ -61,6 +61,7 @@ public class Main {
         final Stopwatch stopwatch = new Stopwatch().start();
         final String result = attackExecutor.start();
         stopwatch.stop().printTime(TimeUnit.SECONDS);
+
         if (result != null) {
             System.out.println("\nPassword found: " + result);
             System.exit(0);

@@ -71,13 +71,6 @@ public class BruteForce implements Attack {
      * @return
      */
     private char[] buildCurrentGuess() {
-/*
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int currentGuessIndex : currentGuessIndexes) {
-            stringBuilder.append(characterSet[currentGuessIndex]);
-        }
-        return stringBuilder.toString();
-*/
         char[] guess = new char[currentGuessIndexes.length];
         for(int i = 0; i < guess.length; i++) {
             guess[i] = characterSet[currentGuessIndexes[i]];

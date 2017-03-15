@@ -36,7 +36,6 @@ class KeystoreLoader {
         } catch (java.security.cert.CertificateException | KeyStoreException | NoSuchAlgorithmException | FileNotFoundException e) {
             throw new KeystoreException(e);
         } catch (IOException e) {
-
             if (e.getCause().getMessage().contains("Password verification failed")) {
                 return null;
             }
