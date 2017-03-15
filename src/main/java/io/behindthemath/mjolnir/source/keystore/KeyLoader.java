@@ -21,11 +21,11 @@ class KeyLoader {
      * @param password the password attempt
      * @return The key, or {@code null} if the password is incorrect or key could not be not found.
      */
-    static Key loadKey(KeyStore keystore, String keyAlias, String password) {
 
+    static Key loadKey(KeyStore keystore, String keyAlias, char[] password) {
         try {
             // get my private key
-            Key key = keystore.getKey(keyAlias, password.toCharArray());
+            Key key = keystore.getKey(keyAlias, password);
             return key;
         } catch (NoSuchAlgorithmException | KeyStoreException | UnrecoverableKeyException e) {
             // let it return null

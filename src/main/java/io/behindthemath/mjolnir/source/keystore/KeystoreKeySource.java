@@ -33,7 +33,7 @@ public class KeystoreKeySource implements Source {
 
     @Override
     public boolean attempt(char[] attempt) {
-        final Key key = KeyLoader.loadKey(keyStore, keyName, String.valueOf(attempt));
+        final Key key = KeyLoader.loadKey(keyStore, keyName, attempt);
         // return true if the key is not null (ie null key == not found)
         return key != null;
     }
