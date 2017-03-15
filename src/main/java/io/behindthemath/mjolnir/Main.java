@@ -48,6 +48,12 @@ public class Main {
     private void doMain(String[] args) {
         parseArgs(args);
         validateState();
+        try {
+            parseArgs(args);
+            validateState();
+        } catch (IllegalArgumentException e) {
+            displayErrorAndParams(e.getMessage());
+        }
 
         // Set up the attack
         final Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
@@ -63,10 +69,11 @@ public class Main {
         stopwatch.stop().printTime(TimeUnit.SECONDS);
 
         if (result != null) {
-            System.out.println("\nPassword found: " + result);
-            System.exit(0);
+            System.out.println("\n" + "Password found: " + result);
+            return true;
         } else {
-            System.exit(1);
+            System.out.println("\n" + "Unknown error occurred.");
+            return false;
         }
     }
 
@@ -75,12 +82,12 @@ public class Main {
      *
      * @param args
      */
-    private void parseArgs(String[] args) {
+    private void parseArgs(String[] args) throws IllegalArgumentException {
         // Check that there's an -s argument
-        if (!"-s".equals(args[0])) displayErrorAndParams("The first argument must be the -s flag.");
+        if (!"-s".equals(args[0])) throw new IllegalArgumentException("The first argument must be the -s flag.");
 
         // If there's an odd number of arguments, something is wrong
-        if (args.length % 2 == 1) displayErrorAndParams("Error parsing arguments.");
+        if (args.length % 2 == 1) throw new IllegalArgumentException("Error parsing arguments.");
 
         for (int i = 0; i < args.length; i += 2) {
             switch (args[i]) {
@@ -90,18 +97,18 @@ public class Main {
                     } else if ("key".equals(args[i + 1])) {
                         source = new KeystoreKeySource();
                     } else {
-                        displayErrorAndParams("Invalid argument for -s");
+                        throw new IllegalArgumentException("Invalid argument for -s");
                     }
                     break;
                 case "-p":
                     if (!(source instanceof KeystoreKeySource)) {
-                        displayErrorAndParams("-p cannot be used with '-s keystore'.");
+                        throw new IllegalArgumentException("-p cannot be used with '-s keystore'.");
                     }
                     ((KeystoreKeySource) source).setKeystorePassword(args[i + 1]);
                     break;
                 case "-k":
                     if (!(source instanceof KeystoreKeySource)) {
-                        displayErrorAndParams("-k cannot be used with '-s keystore'.");
+                        throw new IllegalArgumentException("-k cannot be used with '-s keystore'.");
                     }
                     ((KeystoreKeySource) source).setKeyName(args[i + 1]);
                     break;
@@ -112,14 +119,14 @@ public class Main {
                     try {
                         numberOfWorkers = Integer.parseInt(args[i + 1]);
                     } catch (NumberFormatException e) {
-                        displayErrorAndParams("The -t flag must be passed a valid number.");
+                        throw new IllegalArgumentException("The -t flag must be passed a valid number.");
                     }
                     break;
                 case "-n":
                     try {
                         reportEvery = Integer.parseInt(args[i + 1]);
                     } catch (NumberFormatException e) {
-                        displayErrorAndParams("The -n flag must be passed a valid number.");
+                        throw new IllegalArgumentException("The -n flag must be passed a valid number.");
                     }
                     break;
                 case "-l":
@@ -129,7 +136,7 @@ public class Main {
                     try {
                         guessLength = Integer.parseInt(args[i + 1]);
                     } catch (NumberFormatException e) {
-                        displayErrorAndParams("The -g flag must be passed a valid number.");
+                        throw new IllegalArgumentException("The -g flag must be passed a valid number.");
                     }
                     break;
                 case "-c":
@@ -146,8 +153,8 @@ public class Main {
      * Validates the state once all the command line arguments are parsed.
      */
     private void validateState() {
-        if (characterSet == null) displayErrorAndParams("The -c flag must be used to set the character set.");
-        if (guessLength == 0) displayErrorAndParams("The -g flag must be used to set the password length.");
+        if (characterSet == null) throw new IllegalArgumentException("The -c flag must be used to set the character set.");
+        if (guessLength == 0) throw new IllegalArgumentException("The -g flag must be used to set the password length.");
     }
 
     /**
