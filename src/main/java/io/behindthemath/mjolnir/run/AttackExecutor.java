@@ -23,8 +23,8 @@ public class AttackExecutor {
     }
 
     public String start() {
-        ExecutorService pool = Executors.newFixedThreadPool(numberOfWorkers);
-        List<AttackCallable> attackCallablesList = new ArrayList<>();
+        final ExecutorService pool = Executors.newFixedThreadPool(numberOfWorkers);
+        final List<AttackCallable> attackCallablesList = new ArrayList<>();
         for (int i = 0; i < numberOfWorkers; i++) {
             attackCallablesList.add(new AttackCallable(i, reportEvery, attack, source));
         }

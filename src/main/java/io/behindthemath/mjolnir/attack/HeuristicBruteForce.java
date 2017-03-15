@@ -20,7 +20,7 @@ public class HeuristicBruteForce extends BruteForce {
 
     @Override
     public char[] getNextAttempt() {
-        char[] chars = super.getNextAttempt();
+        final char[] chars = super.getNextAttempt();
         char[] result = Arrays.copyOf(word.toCharArray(), word.length() + chars.length);
         System.arraycopy(chars, 0, result, word.length(), chars.length);
         return result;

@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Antony Lees
  */
 class KeystoreLoader {
-    private File file;
+    private final File file;
 
     KeystoreLoader(String keystoreFilePath) {
         file = new File(keystoreFilePath);

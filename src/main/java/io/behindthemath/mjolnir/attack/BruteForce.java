@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author Antony Lees
  */
 public class BruteForce implements Attack {
-    private char[] characterSet;
+    private final char[] characterSet;
     // An array of ints, each one corresponding to the index of a character in characterSet
     private int[] currentGuessIndexes;
     private final int characterSetMaxIndex;
@@ -17,7 +17,7 @@ public class BruteForce implements Attack {
         this(characterSet, guessLength, null);
     }
 
-    public BruteForce(char[] characterSet, int guessLength, final String lastAttempt) {
+    public BruteForce(final char[] characterSet, final int guessLength, final String lastAttempt) {
         this.characterSet = characterSet;
         characterSetMaxIndex = characterSet.length - 1;
 

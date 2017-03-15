@@ -50,15 +50,16 @@ public class Main {
         validateState();
 
         // Set up the attack
-        Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
+        final Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
 
         // Set up the source
         source.setup();
 
         // Run the attack
-        AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
-        Stopwatch stopwatch = new Stopwatch().start();
-        String result = attackExecutor.start();
+        final AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
+
+        final Stopwatch stopwatch = new Stopwatch().start();
+        final String result = attackExecutor.start();
         stopwatch.stop().printTime(TimeUnit.SECONDS);
         if (result != null) {
             System.out.println("\nPassword found: " + result);
