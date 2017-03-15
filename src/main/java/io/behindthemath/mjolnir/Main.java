@@ -41,13 +41,21 @@ public class Main {
             System.exit(0);
         }
 
-        new Main().doMain(args);
+        final boolean result = new Main().doMain(args);
+
+        // Exit with error code 0 if successful, otherwise exit with error code 1
+        System.exit(result ? 0 : 1);
+
     }
 
-
-    private void doMain(String[] args) {
-        parseArgs(args);
-        validateState();
+    /**
+     * Actually parses the command line arguments and runs the attack.
+     *
+     * @param args
+     *
+     * @return {@code true} if successful; {@code false} if not.
+     */
+    private boolean doMain(String[] args) {
         try {
             parseArgs(args);
             validateState();
