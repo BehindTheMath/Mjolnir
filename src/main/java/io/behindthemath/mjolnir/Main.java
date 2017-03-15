@@ -61,6 +61,7 @@ public class Main {
             validateState();
         } catch (IllegalArgumentException e) {
             displayErrorAndParams(e.getMessage());
+            return false;
         }
 
         // Set up the attack
@@ -185,6 +186,5 @@ public class Main {
     private static void displayErrorAndParams(String error) {
         System.out.println("Error: " + error + "\n");
         displayParams();
-        System.exit(1);
     }
 }
