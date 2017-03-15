@@ -1,5 +1,7 @@
 package io.behindthemath.mjolnir.source;
 
+import java.io.FileNotFoundException;
+
 /**
  * Defines the source to be cracked; e.g. a keystore.
  * 
@@ -9,7 +11,7 @@ public interface Source {
     /**
      * Called to setup the source before any attempts are made.
      */
-    void setup();
+    void setup() throws FileNotFoundException;
 
     /**
      * Attempt to crack the password.

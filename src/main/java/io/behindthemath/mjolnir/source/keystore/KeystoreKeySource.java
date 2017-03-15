@@ -1,5 +1,6 @@
 package io.behindthemath.mjolnir.source.keystore;
 
+import java.io.FileNotFoundException;
 import java.security.Key;
 import java.security.KeyStore;
 
@@ -26,7 +27,7 @@ public class KeystoreKeySource implements Source {
     }
 
     @Override
-    public void setup() {
+    public void setup() throws FileNotFoundException {
         KeystoreLoader keystoreLoader = new KeystoreLoader(keystoreFilePath);
         keyStore = keystoreLoader.loadKeystore(keystorePassword.toCharArray());
     }

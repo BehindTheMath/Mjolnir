@@ -1,12 +1,11 @@
 package io.behindthemath.mjolnir.source.keystore;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 
 /**
  * Loads keystores.
@@ -14,10 +13,19 @@ import java.security.NoSuchAlgorithmException;
  * @author Antony Lees
  */
 class KeystoreLoader {
-    private final File file;
+    private BufferedInputStream bufferedInputStream;
+    private KeyStore keystore;
 
-    KeystoreLoader(String keystoreFilePath) {
-        file = new File(keystoreFilePath);
+    KeystoreLoader(String keystoreFilePath) throws FileNotFoundException {
+        File file = new File(keystoreFilePath);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        bufferedInputStream = new BufferedInputStream(fileInputStream);
+        bufferedInputStream.mark(Integer.MAX_VALUE);
+        try {
+            keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+        } catch (KeyStoreException e) {
+            throw new KeystoreException(e);
+        }
     }
 
     /**
@@ -27,28 +35,19 @@ class KeystoreLoader {
      * @return The keystore, or null if the keystore cannot be opened.
      */
     KeyStore loadKeystore(char[] keystorePassword) {
-        FileInputStream is = null;
         try {
-            is = new FileInputStream(file);
-            KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-            keystore.load(is, keystorePassword);
+            // Load the keystore in the user's home directory
+            bufferedInputStream.reset();
+            keystore.load(bufferedInputStream, keystorePassword);
             return keystore;
-        } catch (java.security.cert.CertificateException | KeyStoreException | NoSuchAlgorithmException | FileNotFoundException e) {
+            // TODO: EOFException might mean we're skipping guesses
+        } catch (CertificateException | NoSuchAlgorithmException | FileNotFoundException e) {
             throw new KeystoreException(e);
         } catch (IOException e) {
-            if (e.getCause().getMessage().contains("Password verification failed")) {
-                return null;
-            }
+            if ((e.getCause() instanceof UnrecoverableKeyException) &&
+                    (e.getCause().getMessage().contains("Password verification failed"))) return null;
+
             throw new KeystoreException(e);
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    // at least we tried
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

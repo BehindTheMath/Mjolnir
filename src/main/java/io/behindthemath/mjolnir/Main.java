@@ -8,6 +8,7 @@ import io.behindthemath.mjolnir.source.keystore.KeystoreKeySource;
 import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
 import io.behindthemath.mjolnir.utils.Stopwatch;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -68,7 +69,12 @@ public class Main {
         final Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
 
         // Set up the source
-        source.setup();
+        try {
+            source.setup();
+        } catch (FileNotFoundException e) {
+            displayErrorAndParams(e.getMessage());
+            return false;
+        }
 
         // Run the attack
         final AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
