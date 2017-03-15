@@ -41,11 +41,13 @@ class KeystoreLoader {
             }
             throw new KeystoreException(e);
         } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                // at least we tried
-                e.printStackTrace();
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    // at least we tried
+                    e.printStackTrace();
+                }
             }
         }
     }
