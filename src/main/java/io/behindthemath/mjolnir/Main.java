@@ -9,7 +9,6 @@ import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
 import io.behindthemath.mjolnir.utils.Stopwatch;
 
 import java.io.FileNotFoundException;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**

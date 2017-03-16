@@ -3,7 +3,6 @@ package io.behindthemath.mjolnir.run;
 import io.behindthemath.mjolnir.attack.Attack;
 import io.behindthemath.mjolnir.source.Source;
 
-import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 /**

@@ -8,7 +8,6 @@ import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
 import io.behindthemath.mjolnir.utils.Stopwatch;
 import org.junit.Test;
 
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
