@@ -20,3 +20,37 @@ jar {
         )
     }
 }
+
+// Options for the Gradle task 'test'.
+test {
+    beforeTest { TestDescriptor descriptor ->
+        // Log the test's class and method names.
+        logger.lifecycle("\n" + "Running test: " + descriptor.getClassName() + "." + descriptor.getName() + "()\n")
+    }
+
+    afterTest { TestDescriptor descriptor, TestResult result ->
+        // Log the test's results.
+        logger.lifecycle("\t" + "Test result: " + result.getResultType().toString())
+
+        if (result.getResultType() == TestResult.ResultType.SUCCESS) {
+            // If the test was successful, log the time it took to run the test.
+            String runTime = Long.toString(result.getEndTime() - result.getStartTime())
+            logger.lifecycle("\t" + "Test run time: " + runTime + " ms.")
+        } else if (result.getResultType() == TestResult.ResultType.FAILURE) {
+            // If the test failed, log the stack trace.
+            logger.lifecycle(parseStackTrace(result.getException()))
+        }
+    }
+}
+
+/**
+ * Parses the stack trace from a {@link Throwable} into a {@link String}.
+ * @param throwable
+ * @return A {@link String} with the stack trace of the {@link Throwable} passed in.
+ */
+static String parseStackTrace(Throwable throwable) {
+    final StringWriter stringWriter = new StringWriter()
+    final PrintWriter printWriter = new PrintWriter(stringWriter, true)
+    throwable.printStackTrace(printWriter)
+    return stringWriter.getBuffer().toString()
+}
