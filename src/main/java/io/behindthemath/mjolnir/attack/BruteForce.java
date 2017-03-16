@@ -68,7 +68,8 @@ public class BruteForce implements Attack {
 
     /**
      * Builds the next guess into a {@link String}.
-     * @return
+     *
+     * @return The current guess.
      */
     private char[] buildCurrentGuess() {
         char[] guess = new char[currentGuessIndexes.length];

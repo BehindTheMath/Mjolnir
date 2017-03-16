@@ -51,7 +51,7 @@ public class Main {
     /**
      * Actually parses the command line arguments and runs the attack.
      *
-     * @param args
+     * @param args The command line arguments.
      *
      * @return {@code true} if successful; {@code false} if not.
      */
@@ -94,7 +94,7 @@ public class Main {
     /**
      * Parses the command line arguments
      *
-     * @param args
+     * @param args The command line arguments.
      */
     private void parseArgs(String[] args) throws IllegalArgumentException {
         // Check that there's an -s argument
