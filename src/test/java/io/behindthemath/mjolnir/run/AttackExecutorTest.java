@@ -28,6 +28,7 @@ public class AttackExecutorTest {
         guessLength = TEST_KEYSTORE_PASSWORD.length();
         final char[] characterSet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w',
                 'x','y','z'};
+        final String lastAttempt = null;
 
         final Source source = new KeystoreSource(KEYSTORE_FILE_PATH);
         source.setup();
@@ -49,7 +50,7 @@ public class AttackExecutorTest {
         guessLength = TEST_KEY_PASSWORD.length();
         final char[] characterSet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t',
                 'u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
-        final String lastAttempt = "szzzz";
+        final String lastAttempt = "s1aaa";
 
         final Source source = new KeystoreKeySource(KEYSTORE_FILE_PATH, TEST_KEYSTORE_PASSWORD, TEST_KEY_NAME);
         source.setup();
