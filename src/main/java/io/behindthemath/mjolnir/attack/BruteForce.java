@@ -2,6 +2,8 @@ package io.behindthemath.mjolnir.attack;
 
 import java.util.Arrays;
 
+import static io.behindthemath.mjolnir.utils.Utils.arraySearch;
+
 /**
  * Brute force attack implementation of {@link Attack}.
  * 
@@ -91,20 +93,5 @@ public class BruteForce implements Attack {
             currentGuessIndexesBuffer[i] = arraySearch(characterSet, lastAttempt.charAt(i));
         }
         return currentGuessIndexesBuffer;
-    }
-
-
-    /**
-     * Searches the specified array of chars for the specified value.
-     *
-     * @param charArray The array to be searched
-     * @param charToFind The value to be searched for
-     * @return The index of the value searched for, if it is found in the array; otherwise -1.
-     */
-    private int arraySearch(char[] charArray, char charToFind) {
-        for (int i = 0; i < charArray.length; i++) {
-            if (charArray[i] == charToFind) return i;
-        }
-        return -1;
     }
 }

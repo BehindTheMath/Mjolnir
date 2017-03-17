@@ -7,9 +7,12 @@ import io.behindthemath.mjolnir.source.Source;
 import io.behindthemath.mjolnir.source.keystore.KeystoreKeySource;
 import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
 import io.behindthemath.mjolnir.utils.Stopwatch;
+import io.behindthemath.mjolnir.utils.Utils;
 
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
+
+import static io.behindthemath.mjolnir.utils.Utils.arraySearch;
 
 /**
  * Runs the attack program
