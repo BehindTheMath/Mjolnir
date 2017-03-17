@@ -4,6 +4,7 @@ import io.behindthemath.mjolnir.attack.Attack;
 import io.behindthemath.mjolnir.attack.BruteForce;
 import io.behindthemath.mjolnir.run.AttackExecutor;
 import io.behindthemath.mjolnir.source.Source;
+import io.behindthemath.mjolnir.source.keystore.KeystoreException;
 import io.behindthemath.mjolnir.source.keystore.KeystoreKeySource;
 import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
 import io.behindthemath.mjolnir.utils.Stopwatch;
@@ -45,7 +46,12 @@ public class Main {
             System.exit(0);
         }
 
-        final boolean result = new Main().doMain(args);
+        boolean result = false;
+        try {
+            result = new Main().doMain(args);
+        } catch (IllegalArgumentException | FileNotFoundException | KeystoreException e) {
+            displayErrorAndParams(e.getMessage());
+        }
 
         // Exit with error code 0 if successful, otherwise exit with error code 1
         System.exit(result ? 0 : 1);
@@ -59,28 +65,26 @@ public class Main {
      *
      * @return {@code true} if successful; {@code false} if not.
      */
-    private boolean doMain(String[] args) {
+    private boolean doMain(String[] args) throws FileNotFoundException {
         final Attack attack;
+        final Stopwatch stopwatch;
+        final String result;
 
-        try {
-            parseArgs(args);
-            validateState(args);
+        parseArgs(args);
+        validateState(args);
 
-            // Set up the attack
-            attack = new BruteForce(characterSet, guessLength, lastAttempt);
+        // Set up the attack
+        attack = new BruteForce(characterSet, minGuessLength, maxGuessLength, lastAttempt);
 
-            // Set up the source
-            source.setup();
-        } catch (IllegalArgumentException | FileNotFoundException e) {
-            displayErrorAndParams(e.getMessage());
-            return false;
-        }
+        // Set up the source
+        source.setup();
 
         // Run the attack
         final AttackExecutor attackExecutor = new AttackExecutor(attack, source, numberOfWorkers, reportEvery);
 
-        final Stopwatch stopwatch = new Stopwatch().start();
-        final String result = attackExecutor.start();
+        stopwatch = new Stopwatch().start();
+        result = attackExecutor.start();
+
         stopwatch.stop().printTime(TimeUnit.SECONDS);
 
         if (result != null) {
