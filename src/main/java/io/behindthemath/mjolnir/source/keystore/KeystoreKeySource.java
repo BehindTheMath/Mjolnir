@@ -34,6 +34,12 @@ public class KeystoreKeySource implements Source {
 
     @Override
     public boolean attempt(char[] attempt) {
+        if (keyStore == null) {
+            throw new IllegalStateException("setup() was not called.");
+        }
+
+        if (keyName == null) throw new IllegalStateException("keyName must be set.");
+
         final Key key = KeyLoader.loadKey(keyStore, keyName, attempt);
         // return true if the key is not null (ie null key == not found)
         return key != null;

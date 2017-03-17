@@ -61,7 +61,7 @@ public class Main {
     private boolean doMain(String[] args) {
         try {
             parseArgs(args);
-            validateState();
+            validateState(args);
         } catch (IllegalArgumentException e) {
             displayErrorAndParams(e.getMessage());
             return false;
@@ -169,9 +169,22 @@ public class Main {
     /**
      * Validates the state once all the command line arguments are parsed.
      */
-    private void validateState() {
+    private void validateState(String[] args) {
         if (characterSet == null) throw new IllegalArgumentException("The -c flag must be used to set the character set.");
         if (guessLength == 0) throw new IllegalArgumentException("The -g flag must be used to set the password length.");
+        if (arraySearch(args, "-f") == -1) {
+            throw new IllegalArgumentException("The -f flag must be used to set the file path for the keystore file.");
+        }
+
+        if (source instanceof KeystoreKeySource) {
+            if (arraySearch(args, "-p") == -1) {
+                throw new IllegalArgumentException("The -p flag must be used to set the password for the keystore file.");
+            }
+            if (arraySearch(args, "-k") == -1) {
+                throw new IllegalArgumentException("The -k flag must be used to set the key name to attempt.");
+            }
+
+        }
     }
 
     /**

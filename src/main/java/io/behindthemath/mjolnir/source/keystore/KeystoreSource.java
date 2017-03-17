@@ -27,6 +27,10 @@ public class KeystoreSource implements Source {
 
     @Override
     public boolean attempt(char[] attempt) {
+        if (keystoreLoader == null) {
+            throw new IllegalStateException("setup() was not called.");
+        }
+
         final KeyStore keystore = keystoreLoader.loadKeystore(attempt);
         // return true if the key is not null (ie null key == not found)
         return keystore != null;
