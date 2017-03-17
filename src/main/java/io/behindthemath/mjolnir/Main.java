@@ -33,7 +33,8 @@ public class Main {
     private int reportEvery = 20000;
 
     // How long the password is
-    private int guessLength = 0;
+    private int minGuessLength = 0;
+    private int maxGuessLength = 0;
 
     // Set of characters to try
     private char[] characterSet;
@@ -146,11 +147,18 @@ public class Main {
                 case "-l":
                     lastAttempt = args[i + 1];
                     break;
-                case "-g":
+                case "-m":
                     try {
-                        guessLength = Integer.parseInt(args[i + 1]);
+                        minGuessLength = Integer.parseInt(args[i + 1]);
                     } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException("The -g flag must be passed a valid number.");
+                        throw new IllegalArgumentException("The -m flag must be passed a valid number.");
+                    }
+                    break;
+                case "-x":
+                    try {
+                        maxGuessLength = Integer.parseInt(args[i + 1]);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("The -x flag must be passed a valid number.");
                     }
                     break;
                 case "-c":
@@ -168,7 +176,7 @@ public class Main {
      */
     private void validateState(String[] args) {
         if (characterSet == null) throw new IllegalArgumentException("The -c flag must be used to set the character set.");
-        if (guessLength == 0) throw new IllegalArgumentException("The -g flag must be used to set the password length.");
+        if (minGuessLength == 0) throw new IllegalArgumentException("The -m flag must be used to set the password length.");
         if (arraySearch(args, "-f") == -1) {
             throw new IllegalArgumentException("The -f flag must be used to set the file path for the keystore file.");
         }
@@ -182,6 +190,10 @@ public class Main {
             }
 
         }
+
+        if ((maxGuessLength > 0) && (maxGuessLength < minGuessLength)) throw new IllegalArgumentException("maxGuessLength cannot be less than minGuessLength.");
+        // If maxGuessLength was not set, set it to be the same as minGuessLength.
+        if (maxGuessLength == 0) maxGuessLength = minGuessLength;
     }
 
     /**
@@ -197,7 +209,8 @@ public class Main {
         System.out.println("-t threads" + "\t\t\t\t" + "The number of concurrent threads to use (default is 4).");
         System.out.println("-n numAttempts" + "\t\t\t" + "Log the progress every numAttempts for each thread (default is 20000). Set to 0 to disable logging.");
         System.out.println("-l lastattempt" + "\t\t\t" + "The last attempt already tried. The program will start after that attempt.");
-        System.out.println("-g guesslength" + "\t\t\t" + "The guess length to attack.");
+        System.out.println("-m minGuessLength" + "\t\t\t" + "The minimum guess length to attack.");
+        System.out.println("-x minGuessLength" + "\t\t\t" + "The maximum guess length to attempt (default is the same as minGuessLength).");
         System.out.println("-c \"characterSet\"" + "\t\t" + "The set of possible characters to try.");
     }
 

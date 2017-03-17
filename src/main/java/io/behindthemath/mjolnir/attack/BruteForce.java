@@ -1,5 +1,7 @@
 package io.behindthemath.mjolnir.attack;
 
+import io.behindthemath.mjolnir.run.PasswordNotFoundException;
+
 import java.util.Arrays;
 
 import static io.behindthemath.mjolnir.utils.Utils.arraySearch;
@@ -14,17 +16,20 @@ public class BruteForce implements Attack {
     // An array of ints, each one corresponding to the index of a character in characterSet
     private int[] currentGuessIndexes;
     private final int characterSetMaxIndex;
+    private int maxGuessLength;
 
-    public BruteForce(final char[] characterSet, final int guessLength) {
-        this(characterSet, guessLength, null);
+    public BruteForce(final char[] characterSet, final int minGuessLength, final int maxGuessLength) {
+        this(characterSet, minGuessLength, maxGuessLength, null);
     }
 
-    public BruteForce(final char[] characterSet, final int guessLength, final String lastAttempt) throws IllegalArgumentException {
+    public BruteForce(final char[] characterSet, final int minGuessLength, final int maxGuessLength,
+                      final String lastAttempt) throws IllegalArgumentException {
         this.characterSet = characterSet;
+        this.maxGuessLength = maxGuessLength;
         characterSetMaxIndex = characterSet.length - 1;
 
         if (lastAttempt == null) {
-            currentGuessIndexes = new int[guessLength];
+            currentGuessIndexes = new int[minGuessLength];
             Arrays.fill(currentGuessIndexes, 0);
         } else {
             currentGuessIndexes = parseAttemptToStartFrom(lastAttempt);
@@ -53,10 +58,15 @@ public class BruteForce implements Attack {
                     currentGuessIndexes[index] = 0;
                     index--;
                 } else {
-                    // If we've already tried every permutation for this guess length, go to the next one
-                    currentGuessIndexes = new int[currentGuessIndexes.length + 1];
-                    Arrays.fill(currentGuessIndexes, 0);
-                    break;
+                    // If we've already tried every permutation for this guess length, check if we can increase the guess length.
+                    if (currentGuessIndexes.length < maxGuessLength - 1) {
+                        // Increment the guess length
+                        currentGuessIndexes = new int[currentGuessIndexes.length + 1];
+                        Arrays.fill(currentGuessIndexes, 0);
+                        break;
+                    } else {
+                        throw new PasswordNotFoundException("Password could not be found with the selected options.");
+                    }
                 }
             }
         }

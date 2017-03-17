@@ -13,8 +13,8 @@ public class HeuristicBruteForce extends BruteForce {
 
     private String word;
 
-    public HeuristicBruteForce(String word, char[] characterSet, int guessLength) {
-        super(characterSet, guessLength);
+    public HeuristicBruteForce(String word, char[] characterSet, int minGuessLength, int maxGuessLength) {
+        super(characterSet, minGuessLength, maxGuessLength);
         this.word = word;
     }
 

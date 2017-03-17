@@ -32,10 +32,12 @@ public class AttackExecutor {
         try {
             return pool.invokeAny(attackCallablesList);
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            if ((e instanceof ExecutionException) && (e.getCause() instanceof PasswordNotFoundException)) {
+                throw (PasswordNotFoundException) e.getCause();
+            }
+            throw new RuntimeException(e);
         } finally {
             pool.shutdownNow();
         }
-        return null;
     }
 }

@@ -14,7 +14,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class AttackCallableTest {
     private char[] characterSet;
-    private final int guessLength = 4;
+    private final int minGuessLength = 4;
+    private final int maxGuessLength = minGuessLength;
     private String lastAttempt;
 
     private final int threadNumber = 0;
@@ -29,7 +30,7 @@ public class AttackCallableTest {
         characterSet = new char[] {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w',
                 'x','y','z'};
         lastAttempt = "taaa";
-        attack = new BruteForce(characterSet, guessLength, lastAttempt);
+        attack = new BruteForce(characterSet, minGuessLength, maxGuessLength, lastAttempt);
 
         final Source source = new KeystoreSource(KEYSTORE_FILE_PATH);
         source.setup();
@@ -51,7 +52,7 @@ public class AttackCallableTest {
         final Source source = new KeystoreKeySource(KEYSTORE_FILE_PATH, TEST_KEYSTORE_PASSWORD, TEST_KEY_NAME);
         source.setup();
 
-        attack = new BruteForce(characterSet, guessLength, lastAttempt);
+        attack = new BruteForce(characterSet, minGuessLength, maxGuessLength, lastAttempt);
         final AttackCallable attackCallable = new AttackCallable(threadNumber, reportEvery, attack, source);
         final String result = attackCallable.call();
 
