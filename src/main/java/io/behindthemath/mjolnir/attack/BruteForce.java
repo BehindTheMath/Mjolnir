@@ -19,7 +19,7 @@ public class BruteForce implements Attack {
         this(characterSet, guessLength, null);
     }
 
-    public BruteForce(final char[] characterSet, final int guessLength, final String lastAttempt) {
+    public BruteForce(final char[] characterSet, final int guessLength, final String lastAttempt) throws IllegalArgumentException {
         this.characterSet = characterSet;
         characterSetMaxIndex = characterSet.length - 1;
 
@@ -91,6 +91,7 @@ public class BruteForce implements Attack {
         int[] currentGuessIndexesBuffer = new int[lastAttempt.length()];
         for (int i = 0; i < lastAttempt.length(); i++) {
             currentGuessIndexesBuffer[i] = arraySearch(characterSet, lastAttempt.charAt(i));
+            if (currentGuessIndexesBuffer[i] == -1) throw new IllegalArgumentException("lastAttempt contains characters not in the character set.");
         }
         return currentGuessIndexesBuffer;
     }

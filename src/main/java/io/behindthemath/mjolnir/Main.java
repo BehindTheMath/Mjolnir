@@ -59,21 +59,18 @@ public class Main {
      * @return {@code true} if successful; {@code false} if not.
      */
     private boolean doMain(String[] args) {
+        final Attack attack;
+
         try {
             parseArgs(args);
             validateState(args);
-        } catch (IllegalArgumentException e) {
-            displayErrorAndParams(e.getMessage());
-            return false;
-        }
 
-        // Set up the attack
-        final Attack attack = new BruteForce(characterSet, guessLength, lastAttempt);
+            // Set up the attack
+            attack = new BruteForce(characterSet, guessLength, lastAttempt);
 
-        // Set up the source
-        try {
+            // Set up the source
             source.setup();
-        } catch (FileNotFoundException e) {
+        } catch (IllegalArgumentException | FileNotFoundException e) {
             displayErrorAndParams(e.getMessage());
             return false;
         }
