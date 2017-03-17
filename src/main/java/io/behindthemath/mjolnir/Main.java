@@ -8,7 +8,6 @@ import io.behindthemath.mjolnir.source.keystore.KeystoreException;
 import io.behindthemath.mjolnir.source.keystore.KeystoreKeySource;
 import io.behindthemath.mjolnir.source.keystore.KeystoreSource;
 import io.behindthemath.mjolnir.utils.Stopwatch;
-import io.behindthemath.mjolnir.utils.Utils;
 
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
@@ -187,12 +186,11 @@ public class Main {
 
         if (source instanceof KeystoreKeySource) {
             if (arraySearch(args, "-p") == -1) {
-                throw new IllegalArgumentException("The -p flag must be used to set the password for the keystore file.");
+                throw new IllegalArgumentException("When using the -s key option, the -p flag must be used to set the password for the keystore file.");
             }
             if (arraySearch(args, "-k") == -1) {
-                throw new IllegalArgumentException("The -k flag must be used to set the key name to attempt.");
+                throw new IllegalArgumentException("When using the -s key option, the -k flag must be used to set the key name to attempt.");
             }
-
         }
 
         if ((maxGuessLength > 0) && (maxGuessLength < minGuessLength)) throw new IllegalArgumentException("maxGuessLength cannot be less than minGuessLength.");

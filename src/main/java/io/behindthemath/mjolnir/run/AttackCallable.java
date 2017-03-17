@@ -34,7 +34,7 @@ public class AttackCallable implements Callable<String> {
                 return String.valueOf(attempt);
             }
 
-            if (reportEvery != 0 && attemptNumber % reportEvery == 0) {
+            if ((reportEvery != 0) && ((attemptNumber % reportEvery) == 0)) {
                 attemptNumber = 0;
                 System.out.println("Thread # " + threadNumber + ": Attempt: " + String.valueOf(attempt));
             }
