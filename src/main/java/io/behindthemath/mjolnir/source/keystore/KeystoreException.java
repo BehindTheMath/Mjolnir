@@ -5,10 +5,15 @@ package io.behindthemath.mjolnir.source.keystore;
  * 
  * @author Antony Lees
  */
-class KeystoreException extends RuntimeException {
+public class KeystoreException extends RuntimeException {
     private static final long serialVersionUID = 7837507479354995645L;
 
-    KeystoreException(Throwable cause) {
+    public KeystoreException(Throwable cause) {
         super(cause);
     }
+
+    public KeystoreException(String message) {
+        super(message);
+    }
+
 }
