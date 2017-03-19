@@ -59,7 +59,7 @@ public class BruteForce implements Attack {
                     index--;
                 } else {
                     // If we've already tried every permutation for this guess length, check if we can increase the guess length.
-                    if (currentGuessIndexes.length < maxGuessLength - 1) {
+                    if (currentGuessIndexes.length < maxGuessLength) {
                         // Increment the guess length
                         currentGuessIndexes = new int[currentGuessIndexes.length + 1];
                         Arrays.fill(currentGuessIndexes, 0);
