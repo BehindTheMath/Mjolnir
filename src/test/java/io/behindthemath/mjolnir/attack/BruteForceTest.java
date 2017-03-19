@@ -7,6 +7,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Behind The Math on 3/4/2017.
@@ -58,5 +59,12 @@ public class BruteForceTest {
         final int[] currentGuessIndexesBuffer = Whitebox.invokeMethod(bruteForce, PARSE_ATTEMPT_TO_START_FROM_METHOD, "abcd");
 
         assertArrayEquals(new int[]{0, 1, 2, 3}, currentGuessIndexesBuffer);
+    }
+
+    @Test
+    public void testConstructorAndGetNextAttempt_whenLastAttemptNotSet_FirstGuessShouldBeIndexChar0() {
+        Attack bruteForce = new BruteForce(characterSet, minGuessLength, maxGuessLength);
+        char[] nextAttempt = bruteForce.getNextAttempt();
+        assertEquals("aaaa", String.valueOf(nextAttempt));
     }
 }

@@ -17,6 +17,7 @@ public class BruteForce implements Attack {
     private int[] currentGuessIndexes;
     private final int characterSetMaxIndex;
     private int maxGuessLength;
+    private boolean isAfterFirstGuess = false;
 
     public BruteForce(final char[] characterSet, final int minGuessLength, final int maxGuessLength) {
         this(characterSet, minGuessLength, maxGuessLength, null);
@@ -74,7 +75,11 @@ public class BruteForce implements Attack {
 
     @Override
     public char[] getNextAttempt() {
-        increment();
+        if (isAfterFirstGuess) {
+            increment();
+        } else {
+            isAfterFirstGuess = true;
+        }
         return buildCurrentGuess();
     }
 
