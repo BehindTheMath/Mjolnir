@@ -67,4 +67,14 @@ public class BruteForceTest {
         char[] nextAttempt = bruteForce.getNextAttempt();
         assertEquals("aaaa", String.valueOf(nextAttempt));
     }
+
+    /**
+     * Similar to {@link #testParseAttemptToStartFrom()}, but starts with the constructor.
+     */
+    @Test
+    public void testConstructor_whenLastAttemptIsSet_NextGuessShouldBeIncrementedByOne() {
+        Attack bruteForce = new BruteForce(characterSet, minGuessLength, maxGuessLength, "abcd");
+        char[] nextAttempt = bruteForce.getNextAttempt();
+        assertEquals("abce", String.valueOf(nextAttempt));
+    }
 }
