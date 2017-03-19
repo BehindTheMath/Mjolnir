@@ -42,7 +42,7 @@ public class BruteForceTest {
 
     @Test
     public void testIncrement_whenCurrentGuessIndexesReachesCharacterSetMaxIndexForAllPositions_itShouldAddAPosition() throws Exception {
-        final BruteForce bruteForce = new BruteForce(characterSet, minGuessLength, maxGuessLength);
+        final BruteForce bruteForce = new BruteForce(characterSet, minGuessLength, minGuessLength + 1);
         Whitebox.setInternalState(bruteForce, CURRENT_GUESS_INDEXES_FIELD, new int[]{25, 25, 25, 25});
         Whitebox.invokeMethod(bruteForce, INCREMENT_METHOD);
         final int[] currentGuessIndexes = Whitebox.getInternalState(bruteForce, CURRENT_GUESS_INDEXES_FIELD);
