@@ -22,7 +22,7 @@ public class AttackCallableTest {
     private final int reportEvery = 20000;
     private Attack attack;
 
-    private final String KEYSTORE_FILE_PATH = "Test keystore.jks";
+    private final String KEYSTORE_FILE_PATH = "test_keystore.jks";
     private final String TEST_KEYSTORE_PASSWORD = "test";
 
     @Test

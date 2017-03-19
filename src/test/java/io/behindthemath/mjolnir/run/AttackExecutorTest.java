@@ -21,7 +21,7 @@ public class AttackExecutorTest {
     private int maxGuessLength;
     private final int numberOfWorkers = 4;
     private final int reportEvery = 20000;
-    private final String KEYSTORE_FILE_PATH = "Test keystore.jks";
+    private final String KEYSTORE_FILE_PATH = "test_keystore.jks";
 
     @Test
     public void testAttackAgainstKeystore() throws Exception {

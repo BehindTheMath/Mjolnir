@@ -24,7 +24,7 @@ public class MainTest {
     private static final String SOURCE_FIELD = "source";
     final String DO_MAIN_METHOD = "doMain";
 
-    private final String TEST_KEYSTORE_FILE_PATH = "Test keystore.jks";
+    private final String TEST_KEYSTORE_FILE_PATH = "test_keystore.jks";
     private final String TEST_KEYSTORE_PASSWORD = "test";
 
     private final String FAKE_TEST_PASSWORD = "password";
