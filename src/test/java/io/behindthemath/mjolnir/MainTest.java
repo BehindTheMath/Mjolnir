@@ -161,7 +161,7 @@ public class MainTest {
     }
 
     @Test
-    public void testDoMain_forKeystore_withWrongArguments_KeystoreExceptionShouldBeThrown() throws Exception {
+    public void testDoMain_forKeystore_withWrongArguments_PasswordNotFoundExceptionShouldBeThrown() throws Exception {
         final int TEST_NUMBER_OF_WORKERS = 1;
         final int TEST_REPORT_EVERY = 0;
         final String TEST_LAST_ATTEMPT = "zzzy";
