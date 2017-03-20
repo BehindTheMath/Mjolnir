@@ -34,6 +34,7 @@ public class BruteForce implements Attack {
             Arrays.fill(currentGuessIndexes, 0);
         } else {
             currentGuessIndexes = parseAttemptToStartFrom(lastAttempt);
+            isAfterFirstGuess = true;
         }
     }
 
