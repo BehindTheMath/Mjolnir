@@ -10,6 +10,12 @@ import static org.junit.Assert.*;
  * Created by Behind The Math on 3/14/2017.
  */
 public class StopwatchTest {
+    /**
+     * Tests {@link Stopwatch#getTime()}. Since it takes a few ms for processing, the method will assert true as long
+     * as it's within 5ms.
+     *
+     * @throws Exception
+     */
     @Test
     public void getTimeTest() throws Exception {
         final long expectedDurationMilliseconds = 3000;
